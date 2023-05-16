@@ -1,0 +1,45 @@
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: aqua;
+    padding: 14px;
+    
+}
+
+/* p {
+    margin: 4px;
+} */
+
+input {
+    padding: 4px;
+    position: relative;
+    top: 40px;
+    margin: 0 auto;
+    width: 200px;
+    border-radius: 6px;
+    flex-grow: 0.5;
+}
+
+.links {
+    display: flex;
+}
+
+svg {
+    margin: 4px;
+}
+
+
+@media screen and (min-width: 868px) {
+    nav {
+        padding: 20px
+    }
+    input {
+        padding: 8px;
+        position: static;
+        
+        width: 600px;
+    }
+    svg {
+        margin: 8px;
+    }
+}
