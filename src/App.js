@@ -1,4 +1,5 @@
 import "./App.css";
+import { LoginBox } from "./components/LoginBox/LoginBox";
 import { NavBar } from "./components/NavBar/NavBar";
 import logo from "./logo.png";
 
@@ -12,6 +13,7 @@ function App() {
     return (
         <div className="App">
             <NavBar />
+            <LoginBox />
         </div>
     );
 }
