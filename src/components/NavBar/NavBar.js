@@ -3,7 +3,7 @@ import { BsCart, BsHeart } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg"
 import "./NavBar.css";
 
-export const NavBar = () => {
+export const NavBar = ({products}) => {
     return (
         <nav>
             <p>BetterMart</p>

@@ -1,0 +1,32 @@
+.landing-container {
+    margin-top: 40px;
+    padding: 1rem;
+}
+
+.landing-container > main > h2 {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.images {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.home-image {
+    width: 50%;
+    height: 380px;
+    margin: 0px 2px;
+}
+
+.category-container {
+    margin: 12px;
+
+}
+.category-container  > h3 {
+    text-align: center;
+    background-color: red;
+    color: #fff;
+    
+}

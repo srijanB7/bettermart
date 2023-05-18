@@ -1,6 +1,6 @@
 import React from "react";
 import "./LoginBox.css";
-
+import { NavLink } from "react-router-dom";
 export const LoginBox = () => {
     return (
         <div className="login-box">
@@ -14,6 +14,7 @@ export const LoginBox = () => {
                 <input type="password" placeholder="Enter Password" />
 
                 <button>Login With test Credentials</button>
+                <NavLink to="/signup">Create a New Account {">"} </NavLink>
             </div>
         </div>
     );

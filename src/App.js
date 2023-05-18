@@ -1,19 +1,20 @@
-import "./App.css";
-import { LoginBox } from "./components/LoginBox/LoginBox";
-import { NavBar } from "./components/NavBar/NavBar";
-import logo from "./logo.png";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { Products } from "./pages/Products";
+import { Product } from "./pages/Product";
+import { Login } from "./pages/Login";
 
 function App() {
     
-		// fetch("/api/products")
-        // .then((res) => res.json())
-		// .then(data => console.log(data));
-	
 
     return (
         <div className="App">
-            <NavBar />
-            <LoginBox />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="/login" element={<Login />} />
+            </Routes>
         </div>
     );
 }
