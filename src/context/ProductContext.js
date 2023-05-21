@@ -9,6 +9,15 @@ export const ProductProvider = ({ children }) => {
     function updateCategory(value) {
         dispatch({ type: "getByCategory", payload: value });
     }
+
+    function updateSize(value) {
+        dispatch({type: "getBySize", payload: value});
+    }
+
+    function updateBysort(value) {
+        dispatch({type: "sort", payload: value});
+    }
+
     const getProducts = async () => {
         try {
             const response = await fetch("/api/products");
@@ -26,7 +35,7 @@ export const ProductProvider = ({ children }) => {
         getProducts();
     }, []);
     return (
-        <ProductContext.Provider value={{ ...state, updateCategory }}>
+        <ProductContext.Provider value={{ ...state, updateCategory, updateSize, updateBysort }}>
             {children}
         </ProductContext.Provider>
     );

@@ -1,10 +1,11 @@
 .filters-container {
     margin-top: 20px;
     margin-left: 12px;
-    width: 300px;
+    max-width: 250px;
     padding: 12px;
     justify-content: space-evenly;
     background-color: #f8f8f8;
+
 }
 
 .filters {

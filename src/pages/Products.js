@@ -6,34 +6,62 @@ import "../App.css";
 import { Filters } from "../components/Filters/Filters";
 
 export const Products = () => {
-    const { products, categories } = useContext(ProductContext);
+    const { products, categories, size, sort } = useContext(ProductContext);
     let displayProducts = [];
 
-    if (categories.Men) {
+    for (const val in categories) {
         displayProducts = [
             ...displayProducts,
-            ...products.filter((product) => product.category === "Men"),
-        ];
-        console.log(displayProducts);
-    }
-    if (categories.Women) {
-        displayProducts = [
-            ...displayProducts,
-            ...products.filter((product) => product.category === "Women"),
-        ];
-    }
-    if (categories.Kids) {
-        displayProducts = [
-            ...displayProducts,
-            ...products.filter((product) => product.category === "Kids"),
+            ...products.filter(
+                (product) => categories[val] && product.category === val
+            ),
         ];
     }
 
-    if (!categories.Men && !categories.Women && !categories.Kids)
-        displayProducts = [...products];
+    let sizedProducts = [],
+        displayBySize = [];
+    for (const val in size) {
+        if (size[val]) {
+            sizedProducts = [
+                ...sizedProducts,
+                ...products.filter((product) => product.size === val),
+            ];
+            // displayProducts = [
+            //     ...displayProducts.filter((products) => products.size === val),
+            // ];
+            displayBySize = [
+                ...displayBySize,
+                ...displayProducts.filter((products) => products.size === val),
+            ];
+        }
+    }
 
-    console.log(categories);
-    console.log(displayProducts);
+    if (displayBySize.length > 0) {
+        displayProducts = [...displayBySize];
+    } else {
+        for (const val in size) {
+            if (size[val]) {
+                displayProducts = displayProducts.filter(
+                    (products) => products.size === val
+                );
+            }
+        }
+    }
+
+    if (!categories.Men && !categories.Women && !categories.Kids) {
+        //displayProducts = [...products, ];
+        sizedProducts.length > 0
+            ? (displayProducts = [...sizedProducts])
+            : (displayProducts = [...products]);
+    }
+
+    if (sort.low) {
+        displayProducts = displayProducts.sort((a, b) => a.price - b.price);
+    }
+
+    if (sort.high) {
+        displayProducts = displayProducts.sort((a, b) => b.price - a.price);
+    }
 
     return (
         <div>
@@ -41,9 +69,13 @@ export const Products = () => {
             <div className="body">
                 <Filters />
                 <div className="products-container">
-                    {displayProducts?.map((products) => (
-                        <ProductCard {...products} />
-                    ))}
+                    {displayProducts.length > 0 ? (
+                        displayProducts?.map((products) => (
+                            <ProductCard {...products} key={products._id} />
+                        ))
+                    ) : (
+                        <p>No Products Found</p>
+                    )}
                 </div>
             </div>
         </div>

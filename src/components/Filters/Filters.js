@@ -6,10 +6,18 @@ import { ProductContext } from "../../context/ProductContext";
 
 export const Filters = () => {
 
-    const { updateCategory } = useContext(ProductContext);
+    const { updateCategory, updateSize, updateBysort } = useContext(ProductContext);
 
-    function handleChange(e) {
+    function handleCategoryChange(e) {
         updateCategory(e.target.value);
+    }
+
+    function handleSizeChange(e) {
+        updateSize(e.target.value);
+    }
+
+    function handleSort(e) {
+        updateBysort(e.target.value);
     }
 
     return (
@@ -22,15 +30,15 @@ export const Filters = () => {
                 <div className="category">
                     <h4>Category</h4>
                     <div>
-                        <input type="checkbox" name="category" value="Men" onChange={handleChange}/>
+                        <input type="checkbox" name="category" value="Men" onChange={handleCategoryChange}/>
                         <label>Men</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="category" value="Women" onChange={handleChange}/>
+                        <input type="checkbox" name="category" value="Women" onChange={handleCategoryChange}/>
                         <label>Women</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="category" value="Kids" onChange={handleChange}/>
+                        <input type="checkbox" name="category" value="Kids" onChange={handleCategoryChange}/>
                         <label>Kids</label>
                     </div>
                 </div>
@@ -38,20 +46,25 @@ export const Filters = () => {
                 <div className="size">
                     <h4>Size</h4>
                     <div>
-                        <input type="checkbox" value="S" />
+                        <input type="checkbox" value="S" onChange={handleSizeChange} />
                         <label>S</label>
                     </div>
                     <div>
-                        <input type="checkbox" value="M" />
+                        <input type="checkbox" value="M" onChange={handleSizeChange}/>
                         <label>M</label>
                     </div>
                     <div>
-                        <input type="checkbox" value="L" />
+                        <input type="checkbox" value="L" onChange={handleSizeChange}/>
                         <label>L</label>
                     </div>
                     <div>
-                        <input type="checkbox" value="XL" />
+                        <input type="checkbox" value="XL" onChange={handleSizeChange}/>
                         <label>XL</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="XXL" onChange={handleSizeChange}/>
+                        <label>XXL</label>
+
                     </div>
                 </div>
 
@@ -80,11 +93,11 @@ export const Filters = () => {
                 <div className="sort">
                     <h4>Sort By</h4>
                     <div>
-                        <input type="radio" name="sort" />
+                        <input type="radio" name="sort" value="low" onClick={handleSort}/>
                         <label>Price- Low to High</label>
                     </div>
                     <div>
-                        <input type="radio" name="sort" />
+                        <input type="radio" name="sort" value="high" onClick={handleSort}/>
                         <label>Price- High to Low</label>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { ProductContext, ProductProvider } from "./context/ProductContext";
+import { AuthProvider } from "./context/AuthContext";
 
 // Call make Server
 makeServer();
@@ -12,9 +13,11 @@ makeServer();
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <BrowserRouter>
-            <ProductProvider>
-                <App />
-            </ProductProvider>
+            <AuthProvider>
+                <ProductProvider>
+                    <App />
+                </ProductProvider>
+            </AuthProvider>
         </BrowserRouter>
     </React.StrictMode>
 );

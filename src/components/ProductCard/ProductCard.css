@@ -5,7 +5,7 @@
     padding: 0.5rem;
     border: 1px solid green;
     width: fit-content;
-
+    height: fit-content;
 }
 
 .product-header {
@@ -22,6 +22,7 @@
    padding: 0.5rem;
    border-radius: 6px;
    cursor: pointer;
+   
 }
 .product-name {
     font-size: 18px;

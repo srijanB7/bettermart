@@ -1,12 +1,13 @@
 import React from 'react'
-import { LoginBox } from '../components/LoginBox/LoginBox'
 import { NavBar } from '../components/NavBar/NavBar'
 
-export const Login = () => {
+export const WishList = () => {
   return (
     <div>
-        
-        <LoginBox />
+        <NavBar />
+        <div>
+            <h1>WishList</h1>
+        </div>
     </div>
   )
 }
