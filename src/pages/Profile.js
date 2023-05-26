@@ -3,12 +3,12 @@ import { NavBar } from '../components/NavBar/NavBar'
 import { AuthContext } from '../context/AuthContext';
 
 export const Profile = () => {
-    const { user, signOutHandler } = useContext(AuthContext);
+    const { signOutHandler } = useContext(AuthContext);
     function handleLogout() {
         signOutHandler();
+        
     }
-    
-    
+    const user = localStorage.getItem("user");
   return (
     <div>
         <NavBar />

@@ -1,4 +1,4 @@
-.product-container {
+.card-container {
     display: flex;
     flex-direction: column;
     margin: 10px 12px;
@@ -8,7 +8,7 @@
     height: fit-content;
 }
 
-.product-header {
+.card-header {
     display: flex;
 
 }
@@ -39,16 +39,5 @@
     color: grey;
 }
 
-.wishlist-button {
-    border-radius: 50%;
-    padding: 4px 0px;
-    width: 40px;
-    align-self: flex-start;
-    margin-left: -40px;
-    
-    background-color: transparent;
-    border: none;
-    /* background-color: transparent; */
-    cursor: pointer;
-}
+
 

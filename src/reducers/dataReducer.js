@@ -1,9 +1,9 @@
-import { useReducer } from "react"
+import { useReducer } from "react";
 
 export const INITIAL_STATE = {
     products: [],
     cart: [],
-    wishlist: [],
+    wishList: [],
     categories: {
         Men: false,
         Women: false,
@@ -14,48 +14,77 @@ export const INITIAL_STATE = {
         M: false,
         L: false,
         XL: false,
-        XXL: false
+        XXL: false,
     },
     sort: {
         low: false,
         high: false,
-    }
-
-}
+    },
+};
 
 export function dataReducer(state, action) {
-    switch(action.type) {
+    switch (action.type) {
         case "getproducts": {
-            return {...state, products: action.payload};
+            return { ...state, products: action.payload };
+        }
+
+        case "getCart": {
+            return { ...state, cart: action.payload}
         }
         case "getByCategory": {
-            
             return {
                 ...state,
-                categories: {...state.categories, [action.payload]: !state.categories[action.payload]},
-            }
+                categories: {
+                    ...state.categories,
+                    [action.payload]: !state.categories[action.payload],
+                },
+            };
         }
         case "getBySize": {
             return {
                 ...state,
-                size: { ...state.size, [action.payload]: !state.size[action.payload]},
-            }
+                size: {
+                    ...state.size,
+                    [action.payload]: !state.size[action.payload],
+                },
+            };
         }
 
         case "sort": {
             let updatedSort;
-            if(action.payload === "low")
-                updatedSort={ low: true, high: false};
-            else 
-                updatedSort={low: false, high: true}
-        
+            if (action.payload === "low")
+                updatedSort = { low: true, high: false };
+            else updatedSort = { low: false, high: true };
+
             return {
-                ...state, sort: updatedSort
-            }    
+                ...state,
+                sort: updatedSort,
+            };
         }
 
+        case "getCart" : {
+            return {
+                ...state,
+                cart: [...action.payload]
+            }
+        }
 
-        default: 
+        case "addToCart": {
+            
+            return {
+                ...state,
+                cart: [...state.cart, action.payload],
+            };
+        }
+
+        case "addToWishList": {
+            return {
+                ...state,
+                wishList: [...state.wishList, action.payload],
+            };
+        }
+
+        default:
             return state;
     }
 }

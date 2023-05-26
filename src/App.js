@@ -7,6 +7,9 @@ import { RequiresAuth } from "./components/RequiresAuth";
 import { Cart } from "./pages/Cart";
 import { WishList } from "./pages/WishList";
 import { Profile } from "./pages/Profile";
+import { SignUp } from "./pages/SignUp";
+import { Logout } from "./pages/Logout";
+import MockAPI from "./pages/Mockman";
 
 function App() {
     return (
@@ -16,8 +19,8 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/login" element={<Login />} />
-                
-                
+                <Route path="/signup" element={<SignUp/>} />
+                <Route path="/logout" element={<Logout />} />
                 <Route
                     path="/profile"
                     element={
@@ -42,7 +45,7 @@ function App() {
                         </RequiresAuth>
                     }
                 />
-
+            {/* <Route path="/mockman" element={<MockAPI/>}/> */}
             </Routes>
         </div>
     );
