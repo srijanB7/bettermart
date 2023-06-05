@@ -1,81 +1,88 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { NavBar } from "../components/NavBar/NavBar";
 import { ProductCard } from "../components/ProductCard/ProductCard";
 import "../App.css";
 import { Filters } from "../components/Filters/Filters";
+import ReactLoading from "react-loading";
 
 export const Products = () => {
-    const { products, categories, size, sort } = useContext(ProductContext);
-    let displayProducts = [];
+    const {
+        products,
+        categories,
+        size,
+        sort,
+        wishList,
+        cart,
+        getProducts,
+        isLoading,
+        category,
+        sizes,
+        rating,
+        range
+    } = useContext(ProductContext);
 
-    for (const val in categories) {
-        displayProducts = [
-            ...displayProducts,
-            ...products.filter(
-                (product) => categories[val] && product.category === val
-            ),
-        ];
-    }
+    useEffect(() => {
+        setTimeout(() => {
+            getProducts();
+        }, 1000);
+        return () => {
+            clearTimeout();
+        };
+    }, []);
 
-    let sizedProducts = [],
-        displayBySize = [];
-    for (const val in size) {
-        if (size[val]) {
-            sizedProducts = [
-                ...sizedProducts,
-                ...products.filter((product) => product.size === val),
-            ];
-            // displayProducts = [
-            //     ...displayProducts.filter((products) => products.size === val),
-            // ];
-            displayBySize = [
-                ...displayBySize,
-                ...displayProducts.filter((products) => products.size === val),
-            ];
-        }
-    }
+    let displayProducts = [...products];
 
-    if (displayBySize.length > 0) {
-        displayProducts = [...displayBySize];
-    } else {
-        for (const val in size) {
-            if (size[val]) {
-                displayProducts = displayProducts.filter(
-                    (products) => products.size === val
-                );
-            }
-        }
-    }
+    displayProducts =
+        category.length > 0
+            ? displayProducts.filter((item) => category.includes(item.category))
+            : [...products];
 
-    if (!categories.Men && !categories.Women && !categories.Kids) {
-        //displayProducts = [...products, ];
-        sizedProducts.length > 0
-            ? (displayProducts = [...sizedProducts])
-            : (displayProducts = [...products]);
-    }
+    displayProducts =
+        sizes.length > 0
+            ? displayProducts.filter((item) => sizes.includes(item.size))
+            : [...displayProducts];
 
-    if (sort.low) {
+    if (sort === "low") {
         displayProducts = displayProducts.sort((a, b) => a.price - b.price);
     }
 
-    if (sort.high) {
+    if (sort === "high") {
         displayProducts = displayProducts.sort((a, b) => b.price - a.price);
     }
+
+    if (rating !== null) {
+        displayProducts = displayProducts.filter(
+            (item) => item.rating >= parseInt(rating)
+        );
+    }
+
+    displayProducts = displayProducts.filter(item => parseInt(item.price) <= range);
 
     return (
         <div>
             <NavBar />
             <div className="body">
                 <Filters />
+
                 <div className="products-container">
-                    {displayProducts.length > 0 ? (
-                        displayProducts?.map((products) => (
-                            <ProductCard {...products} key={products._id} />
-                        ))
-                    ) : (
-                        <p>No Products Found</p>
+                    {isLoading && (
+                        <ReactLoading
+                            type={"spinningBubbles"}
+                            color={"blue"}
+                            height={667}
+                            width={375}
+                        />
                     )}
+
+                    {!isLoading &&
+                        (displayProducts.length > 0 ? (
+                            displayProducts?.map((products) => (
+                                <ProductCard {...products} key={products._id} />
+                            ))
+                        ) : (
+                            <p>No Products Found</p>
+                        ))}
                 </div>
             </div>
         </div>

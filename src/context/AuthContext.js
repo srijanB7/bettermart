@@ -1,11 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useReducer, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ProductContext } from "./ProductContext";
+
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     //const [user, setUser] = useState(null);
-
+    
+    const { reset } = useContext(ProductContext);
     const navigate = useNavigate();
     const location = useLocation();
     const signInHandler = async (email, password) => {
@@ -24,6 +27,7 @@ export const AuthProvider = ({ children }) => {
                 //console.log(back);
                 localStorage.setItem("token", back?.encodedToken);
                 localStorage.setItem("user", back?.foundUser.firstName);
+                localStorage.setItem("email", back?.foundUser.email)
                 //setUser(back?.foundUser.firstName);
                 navigate(location?.state?.from?.pathname);
 
@@ -39,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     const signOutHandler = () => {
         localStorage.clear();
         //setUser(null);
+        reset();
         navigate("/logout");
     };
 
@@ -59,6 +64,7 @@ export const AuthProvider = ({ children }) => {
                 console.log(back);
                 localStorage.setItem("token", back?.encodedToken);
                 localStorage.setItem("user", back?.createdUser.name);
+                localStorage.setItem("email", back?.createdUser.email)
                 //setUser(back?.createdUser.name);
                 navigate("/products");
 

@@ -2,10 +2,10 @@
     margin-top: 20px;
     margin-left: 12px;
     max-width: 250px;
-    padding: 12px;
+    padding: 1rem;
     justify-content: space-evenly;
     background-color: #f8f8f8;
-
+    
 }
 
 .filters {
@@ -25,4 +25,18 @@
 
 .sort {
     margin: 10px 0px;
+}
+.slider {
+    display: flex;
+    justify-content: space-between;
+}
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-header > button {
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
 }

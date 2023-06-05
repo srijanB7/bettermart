@@ -2,10 +2,13 @@
     display: flex;
     flex-direction: column;
     margin: 10px 12px;
-    padding: 0.5rem;
-    border: 1px solid green;
+    padding: 0.7rem;
     width: fit-content;
     height: fit-content;
+    border-radius: 12px;
+    background-color: gainsboro;
+    cursor: pointer;
+    
 }
 
 .product-header {
@@ -22,6 +25,7 @@
    padding: 0.5rem;
    border-radius: 6px;
    cursor: pointer;
+   background-color: cadetblue;
    
 }
 .product-name {
@@ -51,4 +55,3 @@
     /* background-color: transparent; */
     cursor: pointer;
 }
-

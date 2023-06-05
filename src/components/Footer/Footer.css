@@ -1,0 +1,13 @@
+.Footer-container {
+    display: flex;
+    background-color: beige;
+    align-items: center;
+    height: 100px;
+    flex-direction: column;
+}
+
+.links {
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+}

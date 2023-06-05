@@ -51,13 +51,7 @@ export const SignUpBox = () => {
                     onChange={handlePassword}
                 />
 
-                <label>Confirm Password</label>
-                <input
-                    type="password"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={handlePassword}
-                />
+                
                 <button onClick={handleSignUp}>SignUp</button>
             </div>
         </div>

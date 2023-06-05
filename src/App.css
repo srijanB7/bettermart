@@ -4,9 +4,88 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     background-color: #fff;
+    flex-grow: 1;
 }
 
 .body {
     display: flex;
     background-color: #f8f8f8;
+}
+
+.cart-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #fff;
+    align-items: flex-start;
+    
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   
+    width: 200px;
+    height: fit-content;
+    padding: 1rem;
+    background-color: #f8f8f8;
+    margin-top: 12px;
+    box-shadow: 0px 0px 5px 3px rgba(207,203,207,1);
+}
+
+.checkout-container > h3 {
+    text-align: center;
+}
+
+.checkout-container > button {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: cadetblue;
+    width: 100px;
+    align-self: center;
+}
+
+.checkout-container > p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-container {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-evenly;
+    
+}
+.indi-address {
+    display: flex;
+    padding: 1rem;
+}
+
+.indi-address > label {
+    margin-left: 4px;
+}
+
+.add-btn {
+    border: none;
+    padding: 0.5rem;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    margin-top: 12px;
+    border-radius: 8px;
+}
+
+.profile-container {
+    border: 1px solid red;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+
+}
+.profile-container > button {
+    width: fit-content;
+    padding: 0.25rem;
 }

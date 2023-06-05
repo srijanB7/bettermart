@@ -1,25 +1,24 @@
-import { useReducer } from "react";
-
 export const INITIAL_STATE = {
     products: [],
     cart: [],
     wishList: [],
-    categories: {
-        Men: false,
-        Women: false,
-        Kids: false,
-    },
-    size: {
-        S: false,
-        M: false,
-        L: false,
-        XL: false,
-        XXL: false,
-    },
-    sort: {
-        low: false,
-        high: false,
-    },
+    searchedItems: [],
+    searchResults: false,
+    rating: null,
+    category: [],
+    sizes: [],
+    range: 2000,
+    sort: "null",
+    address: [
+        {
+            name: "SherLock Holmes",
+            house: "221 B",
+            street: "Baker Street",
+            city: "London",
+            pin: "NW1",
+            mobile: "987654321",
+        },
+    ],
 };
 
 export function dataReducer(state, action) {
@@ -29,48 +28,60 @@ export function dataReducer(state, action) {
         }
 
         case "getCart": {
-            return { ...state, cart: action.payload}
+            return { ...state, cart: action.payload };
         }
         case "getByCategory": {
+            const checked = action.payload.target.checked;
+
+            let updatedCategories = state.category.filter(
+                (item) => item !== action.payload.target.value
+            );
+            if (checked) {
+                updatedCategories = [
+                    ...state.category,
+                    action.payload.target.value,
+                ];
+            }
+
             return {
                 ...state,
-                categories: {
-                    ...state.categories,
-                    [action.payload]: !state.categories[action.payload],
-                },
+                // categories: {
+                //     ...state.categories,
+                //     [action.payload]: !state.categories[action.payload],
+                // },
+                category: updatedCategories,
             };
         }
         case "getBySize": {
+            const checked = action.payload.target.checked;
+
+            let updatedSizes = state.sizes.filter(
+                (size) => size !== action.payload.target.value
+            );
+            if (checked) {
+                updatedSizes = [...updatedSizes, action.payload.target.value];
+            }
             return {
                 ...state,
-                size: {
-                    ...state.size,
-                    [action.payload]: !state.size[action.payload],
-                },
+                sizes: updatedSizes,
             };
         }
 
         case "sort": {
-            let updatedSort;
-            if (action.payload === "low")
-                updatedSort = { low: true, high: false };
-            else updatedSort = { low: false, high: true };
-
             return {
                 ...state,
-                sort: updatedSort,
+                sort: action.payload,
             };
         }
 
-        case "getCart" : {
+        case "getCart": {
             return {
                 ...state,
-                cart: [...action.payload]
-            }
+                cart: [...action.payload],
+            };
         }
 
         case "addToCart": {
-            
             return {
                 ...state,
                 cart: [...state.cart, action.payload],
@@ -83,6 +94,70 @@ export function dataReducer(state, action) {
                 wishList: [...state.wishList, action.payload],
             };
         }
+
+        case "getWishList": {
+            return {
+                ...state,
+                wishList: [...action.payload],
+            };
+        }
+
+        case "signout": {
+            return {
+                ...state,
+                wishList: [],
+                cart: [],
+            };
+        }
+
+        case "search": {
+            let searchedProducts = [],
+                updatedSearchResults = false;
+            if (action.payload !== "") {
+                searchedProducts = state.products.filter((product) =>
+                    product.title.toLowerCase().includes(action.payload)
+                );
+                updatedSearchResults = true;
+            }
+            return {
+                ...state,
+                searchedItems: searchedProducts,
+                searchResults: updatedSearchResults,
+            };
+        }
+
+        case "toggleSearch": {
+            return {
+                ...state,
+                searchResults: false,
+            };
+        }
+
+        case "clear": {
+            return {
+                ...state,
+                rating: null,
+                category: [],
+                sizes: [],
+                searchedItems: [],
+                sort: null,
+            };
+        }
+
+        case "rating": {
+            return {
+                ...state,
+                rating: action.payload,
+            }
+        }
+
+        case "range": {
+            return {
+                ...state,
+                range: action.payload
+            }
+        }
+
 
         default:
             return state;

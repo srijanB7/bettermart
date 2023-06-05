@@ -52,3 +52,26 @@ a {
     text-decoration: none;
     
 }
+
+.search-results {
+    height: 180px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 70px;
+    background-color: aliceblue;
+    top: 5px;
+    flex-grow: 0.5;
+    
+}
+
+.search-product {
+    width: 420px;
+    display: flex;
+}
+
+.search-item {
+    display: flex;
+    justify-content: center;
+}

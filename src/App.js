@@ -10,6 +10,7 @@ import { Profile } from "./pages/Profile";
 import { SignUp } from "./pages/SignUp";
 import { Logout } from "./pages/Logout";
 import MockAPI from "./pages/Mockman";
+import { Checkout } from "./pages/Checkout";
 
 function App() {
     return (
@@ -19,7 +20,7 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp/>} />
+                <Route path="/signup" element={<SignUp />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route
                     path="/profile"
@@ -45,7 +46,15 @@ function App() {
                         </RequiresAuth>
                     }
                 />
-            {/* <Route path="/mockman" element={<MockAPI/>}/> */}
+                <Route
+                    path="/checkout"
+                    element={
+                        <RequiresAuth>
+                            <Checkout />
+                        </RequiresAuth>
+                    }
+                />
+                {/* <Route path="/mockman" element={<MockAPI/>}/> */}
             </Routes>
         </div>
     );
