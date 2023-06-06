@@ -69,9 +69,16 @@ a {
 .search-product {
     width: 420px;
     display: flex;
+    
 }
 
 .search-item {
     display: flex;
     justify-content: center;
+}
+
+.search-product-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
 }

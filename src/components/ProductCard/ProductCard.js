@@ -16,7 +16,15 @@ export const ProductCard = ({ _id, image, title, original_price, price }) => {
         deleteItemFromWishList,
     } = useContext(ProductContext);
 
+    const user = localStorage.getItem("user");
+    const isInWishList = wishList.some((product) => product._id === _id);
+    const isInCart = cart.some((product) => product._id === _id);
+
     function addToCart(id) {
+        if (!user) {
+            toast.error("Login First");
+            return;
+        }
         const product = products.find((product) => product._id === id);
         const productInCart = cart.find((item) => item._id === product._id);
         if (productInCart)  
@@ -24,12 +32,10 @@ export const ProductCard = ({ _id, image, title, original_price, price }) => {
         addItemToCart(product);
         toast("Added to Cart");
     }
-    const user = localStorage.getItem("user");
-    const isInWishList = wishList.some((product) => product._id === _id);
 
     function addToWishList(id) {
         if (!user) {
-            alert("login");
+            toast.error("Login First");
             return;
         }
         const product = products.find((product) => product._id === id);
@@ -41,7 +47,7 @@ export const ProductCard = ({ _id, image, title, original_price, price }) => {
         addItemToWishList(product);
         toast("Added to WishList")
     }
-    const isInCart = cart.some((product) => product._id === _id);
+    
     return (
         <div className="product-container">
             <div className="product-header">

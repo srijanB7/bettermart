@@ -5,6 +5,7 @@ import { ProductCard } from "../components/ProductCard/ProductCard";
 import "../App.css";
 import { Filters } from "../components/Filters/Filters";
 import ReactLoading from "react-loading";
+import { Footer } from "../components/Footer/Footer";
 
 export const Products = () => {
     const {
@@ -85,6 +86,7 @@ export const Products = () => {
                         ))}
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

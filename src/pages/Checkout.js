@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { NavBar } from "../components/NavBar/NavBar";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 export const Checkout = () => {
     const { cart, address } = useContext(ProductContext);
@@ -11,6 +14,8 @@ export const Checkout = () => {
             (acc, val) => acc + parseInt(val.price) * val.qty,
             0
         );
+
+
     return (
         <div>
             <NavBar />
@@ -34,12 +39,20 @@ export const Checkout = () => {
                     <p>
                         Total Items in Cart: <span>{cart.length}</span>
                     </p>
+                    {
+                        cart.map(item => <div key={item._id}>
+                            <p>{item.title}  ({item.qty})</p>
+
+                        </div>)
+                    }
                     <p>
                         Total Amount: <span>{total}</span>
                     </p>
-                    <button>Place Order</button>
+                    <button><Link to="/products">Place Order</Link></button>
+                    
                 </div>
             </div>
+            <ToastContainer autoClose={2000}/>
         </div>
     );
 };

@@ -44,7 +44,8 @@ export const AuthProvider = ({ children }) => {
         localStorage.clear();
         //setUser(null);
         reset();
-        navigate("/logout");
+        navigate("/products");
+        
     };
 
     const signUpHandler = async (name, email, password) => {

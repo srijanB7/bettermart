@@ -45,6 +45,18 @@ export const ProductProvider = ({ children }) => {
         dispatch({type: "range", payload: value});
     }
 
+    function redirectToCategory(value) {
+        dispatch({type: "redirect", payload: value});
+    }
+
+    function addaAddress(value) {
+        dispatch({type: "add address", payload: value})
+    }
+
+    function deleteaAddress(value) {
+        dispatch({type: "delete address", payload: value});
+    }
+
     // function addItemToCart(value) {
     //     dispatch({ type: "addToCart", payload: value });
     // }
@@ -237,6 +249,9 @@ export const ProductProvider = ({ children }) => {
                 removeFilters,
                 updateByRating,
                 updateByRange,
+                redirectToCategory,
+                addaAddress,
+                deleteaAddress
             }}
         >
             {children}

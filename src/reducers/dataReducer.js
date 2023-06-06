@@ -11,12 +11,14 @@ export const INITIAL_STATE = {
     sort: "null",
     address: [
         {
+            
             name: "SherLock Holmes",
             house: "221 B",
             street: "Baker Street",
             city: "London",
             pin: "NW1",
             mobile: "987654321",
+            
         },
     ],
 };
@@ -158,6 +160,26 @@ export function dataReducer(state, action) {
             }
         }
 
+        case "redirect": {
+            return {
+                ...state,
+                category: [action.payload],
+            }
+        }
+
+        case "add address": {
+            return {
+                ...state,
+                address: [...state.address, action.payload],
+            }
+        }
+
+        case "delete address": {
+            return {
+                ...state,
+                address: state.address.filter((item, ind) => ind != action.payload)
+            }
+        }
 
         default:
             return state;

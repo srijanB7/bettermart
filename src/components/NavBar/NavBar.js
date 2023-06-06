@@ -18,7 +18,7 @@ export const NavBar = ({ products }) => {
     //console.log(searchResults);
     return (
         <nav>
-            <Link to="/products">
+            <Link to="/">
                 <p>BetterMart</p>
             </Link>
             <input
@@ -44,7 +44,10 @@ export const NavBar = ({ products }) => {
                                             height: "100px",
                                         }}
                                     />
-                                    <p>{item.title}</p>
+                                    <div className="search-product-details">
+                                        <p>{item.title}</p>
+                                        <p>{item.price}</p>
+                                    </div>
                                 </Link>
                             </div>
                         ))
