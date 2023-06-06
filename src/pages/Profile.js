@@ -11,6 +11,8 @@ export const Profile = () => {
     function handleLogout() {
         signOutHandler();
     }
+    const user = localStorage.getItem("user");
+    const email = localStorage.getItem("email");
 
     const [newAddress, setNewAddress] = useState(false);
 	const [name, setName] = useState("");
@@ -23,8 +25,6 @@ export const Profile = () => {
         setNewAddress(true);
     }
 
-    const user = localStorage.getItem("user");
-    const email = localStorage.getItem("email");
 
 	function addAddress() {
 		setNewAddress(false);
