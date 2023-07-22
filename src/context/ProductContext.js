@@ -221,6 +221,11 @@ export const ProductProvider = ({ children }) => {
         dispatch({ type: "signout" });
     }
 
+    function resetSearch() {
+        dispatch({type: "reset search"})
+    }
+
+
     useEffect(() => {
         // getProducts();
         getCart();
@@ -251,7 +256,8 @@ export const ProductProvider = ({ children }) => {
                 updateByRange,
                 redirectToCategory,
                 addaAddress,
-                deleteaAddress
+                deleteaAddress,
+                resetSearch
             }}
         >
             {children}

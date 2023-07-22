@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsCart, BsHeart } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
@@ -7,8 +7,9 @@ import { ProductContext } from "../../context/ProductContext";
 
 export const NavBar = ({ products }) => {
     const [searchText, setSearchText] = useState("");
-    const { getSearchedItems, searchedItems, searchResults, hideSearch } =
+    const { getSearchedItems, searchedItems, searchResults, hideSearch, resetSearch } =
         useContext(ProductContext);
+    
     function handleChange(event) {
         const input = event.target.value.toLowerCase();
         setSearchText(event.target.value);
@@ -16,6 +17,9 @@ export const NavBar = ({ products }) => {
         //console.log(event.target.value)
     }
     //console.log(searchResults);
+    useEffect(() => {
+        resetSearch();
+    }, [])
     return (
         <nav>
             <Link to="/">

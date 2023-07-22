@@ -181,6 +181,14 @@ export function dataReducer(state, action) {
             }
         }
 
+        case "reset search": {
+            return {
+                ...state,
+                searchResults: false,
+                searchedItems: [],
+            }
+        }
+
         default:
             return state;
     }
