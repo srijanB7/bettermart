@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export const Checkout = () => {
     const { cart, address, addaAddress } = useContext(ProductContext);
-    console.log(address[0].city);
+    //console.log(address[0]?.city);
     let total = 0;
     if (cart.length > 0)
         total = cart.reduce(
@@ -72,9 +72,9 @@ export const Checkout = () => {
                                 name="address"
                             />
                             <label>
-                                <h3>{add.name}</h3>
-                                <p>{add.house}</p>
-                                <p>{add.street}</p>
+                                <h3>{add?.name}</h3>
+                                <p>{add?.house}</p>
+                                <p>{add?.street}</p>
                             </label>
                         </div>
                     ))}
