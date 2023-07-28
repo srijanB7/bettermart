@@ -11,6 +11,7 @@ import { SignUp } from "./pages/SignUp";
 import { Logout } from "./pages/Logout";
 import MockAPI from "./pages/Mockman";
 import { Checkout } from "./pages/Checkout";
+import { CheckLogin } from "./components/CheckLogin";
 
 function App() {
     return (
@@ -19,7 +20,14 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:id" element={<Product />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                    path="/login"
+                    element={
+                        <CheckLogin>
+                            <Login />
+                        </CheckLogin>
+                    }
+                />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route
